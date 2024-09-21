@@ -1,6 +1,7 @@
 package com.ggzed.im.service.impl;
 
 import cn.hutool.core.convert.Convert;
+import com.alibaba.excel.EasyExcel;
 import com.baomidou.mybatisplus.core.metadata.IPage;
 import com.ggzed.im.common.exception.UserNotExistException;
 import com.ggzed.im.common.result.ResultEnum;
@@ -13,6 +14,8 @@ import com.ggzed.im.repository.UserInfoRepository;
 import com.ggzed.im.service.UserInfoService;
 import org.springframework.stereotype.Service;
 import com.ggzed.im.model.common.PageResult;
+import org.springframework.util.StringUtils;
+
 import javax.annotation.Resource;
 import java.util.Objects;
 
@@ -25,9 +28,11 @@ public class UserInfoServiceImpl implements UserInfoService {
     @Override
     public UserVo getById(String id) {
         UserInfo userInfo = userInfoRepository.getByUserId(id);
+
         if (Objects.isNull(userInfo)){
             throw new UserNotExistException(ResultEnum.USER_NOT_EXIST);
         }
+
         return Convert.convert(UserVo.class, userInfo);
     }
 
