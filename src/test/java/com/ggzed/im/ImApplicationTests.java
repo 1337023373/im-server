@@ -19,7 +19,7 @@ class ImApplicationTests {
         Long aLong = Long.valueOf(i);
         System.out.println(aLong);
 
-        //测试回滚代码，这是原始版本
+        //这是错误版本
 
 
     }
